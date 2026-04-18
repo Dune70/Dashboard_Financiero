@@ -1,0 +1,18 @@
+{
+  "TVPP": { "tipo": "PBI ARS", "ticker_d": null,    "vencimiento": "2035-12-31", "tasa_cupon": 0.000, "periodicidad": "Semestral", "amortizacion": "Variable",   "ley": "Argentina",  "moneda": "ARS", "notas": "Cupón vinculado al PBI" },
+  "TVPY": { "tipo": "PBI USD", "ticker_d": null,    "vencimiento": "2035-12-31", "tasa_cupon": 0.000, "periodicidad": "Semestral", "amortizacion": "Variable",   "ley": "Nueva York", "moneda": "USD", "notas": "Cupón vinculado al PBI" },
+  "AO27": { "tipo": "BONTES",  "ticker_d": "AO27D", "vencimiento": "2027-10-29", "tasa_cupon": 6.000, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina",  "moneda": "USD", "notas": "" },
+  "AO28": { "tipo": "BONTES",  "ticker_d": "AO28D", "vencimiento": "2028-10-31", "tasa_cupon": 6.000, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina",  "moneda": "USD", "notas": "" },
+  "AN29": { "tipo": "BONTES",  "ticker_d": "AN29D", "vencimiento": "2029-11-30", "tasa_cupon": 6.500, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina",  "moneda": "USD", "notas": "" },
+  "AL29": { "tipo": "GLOBAL",  "ticker_d": "AL29D", "vencimiento": "2029-07-09", "tasa_cupon": 1.000, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Argentina",  "moneda": "USD", "notas": "Step Up" },
+  "GD29": { "tipo": "GLOBAL",  "ticker_d": "GD29D", "vencimiento": "2029-07-09", "tasa_cupon": 1.000, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Nueva York", "moneda": "USD", "notas": "Step Up" },
+  "AL30": { "tipo": "GLOBAL",  "ticker_d": "AL30D", "vencimiento": "2030-07-09", "tasa_cupon": 0.125, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Argentina",  "moneda": "USD", "notas": "MEP reference — actualización 5 min" },
+  "GD30": { "tipo": "GLOBAL",  "ticker_d": "GD30D", "vencimiento": "2030-07-09", "tasa_cupon": 0.125, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Nueva York", "moneda": "USD", "notas": "" },
+  "AE38": { "tipo": "GLOBAL",  "ticker_d": "AE38D", "vencimiento": "2038-01-09", "tasa_cupon": 1.000, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Argentina",  "moneda": "USD", "notas": "Step Up" },
+  "GD38": { "tipo": "GLOBAL",  "ticker_d": "GD38D", "vencimiento": "2038-01-09", "tasa_cupon": 1.000, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Nueva York", "moneda": "USD", "notas": "Step Up" },
+  "AL35": { "tipo": "GLOBAL",  "ticker_d": "AL35D", "vencimiento": "2035-07-09", "tasa_cupon": 3.625, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Argentina",  "moneda": "USD", "notas": "" },
+  "GD35": { "tipo": "GLOBAL",  "ticker_d": "GD35D", "vencimiento": "2035-07-09", "tasa_cupon": 3.625, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Nueva York", "moneda": "USD", "notas": "" },
+  "AL41": { "tipo": "GLOBAL",  "ticker_d": "AL41D", "vencimiento": "2041-07-09", "tasa_cupon": 4.250, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Argentina",  "moneda": "USD", "notas": "" },
+  "GD41": { "tipo": "GLOBAL",  "ticker_d": "GD41D", "vencimiento": "2041-07-09", "tasa_cupon": 4.250, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Nueva York", "moneda": "USD", "notas": "" },
+  "GD46": { "tipo": "GLOBAL",  "ticker_d": "GD46D", "vencimiento": "2046-07-09", "tasa_cupon": 5.000, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Nueva York", "moneda": "USD", "notas": "" }
+}
