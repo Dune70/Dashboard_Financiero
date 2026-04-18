@@ -1,0 +1,23 @@
+{
+  "name": "herramientas-financieras-ar",
+  "version": "1.0.0",
+  "description": "Suite de calculadoras financieras para el mercado argentino",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "update-bonos": "node actualizar-bonos.js",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "argentina",
+    "finanzas",
+    "bonos",
+    "cauciones",
+    "IOL"
+  ],
+  "author": "Christian",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.6.1"
+  }
+}

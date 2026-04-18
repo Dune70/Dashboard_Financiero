@@ -1,0 +1,10 @@
+# Credenciales — nunca subir
+.env
+
+# Logs del scheduler
+logs/
+node_modules/
+
+# Python
+__pycache__/
+*.pyc

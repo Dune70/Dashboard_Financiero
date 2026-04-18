@@ -1,0 +1,12 @@
+herramientas-ar/              ← raíz del repo
+├── scheduler_iol.py          ← acá va el script
+├── .env                      ← acá van tus credenciales (no se sube)
+├── .gitignore                ← debe incluir ".env" y "logs/"
+├── data/
+│   ├── lecaps_static.json    ← subir al repo
+│   └── lecaps_boncaps.json   ← lo genera el script automáticamente
+├── logs/
+│   └── scheduler.log         ← lo genera el script automáticamente
+├── bonos_renta_fija.html
+├── calculadora_cauciones.html
+└── calculadora_intereses_compuesto.html

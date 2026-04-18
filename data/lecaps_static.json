@@ -1,0 +1,16 @@
+{
+  "S17A6": { "tipo": "LECAP",  "vencimiento": "2026-04-17", "valVto": 1.10130 },
+  "S30A6": { "tipo": "LECAP",  "vencimiento": "2026-04-30", "valVto": 1.27486 },
+  "S15Y6": { "tipo": "LECAP",  "vencimiento": "2026-05-15", "valVto": 1.05178 },
+  "S29Y6": { "tipo": "LECAP",  "vencimiento": "2026-05-29", "valVto": 1.32044 },
+  "T30J6": { "tipo": "BONCAP", "vencimiento": "2026-06-30", "valVto": 1.44896 },
+  "S31L6": { "tipo": "LECAP",  "vencimiento": "2026-07-31", "valVto": 1.17677 },
+  "S31G6": { "tipo": "LECAP",  "vencimiento": "2026-08-31", "valVto": 1.27064 },
+  "S30S6": { "tipo": "LECAP",  "vencimiento": "2026-09-30", "valVto": 1.17536 },
+  "S30O6": { "tipo": "LECAP",  "vencimiento": "2026-10-30", "valVto": 1.35278 },
+  "S30N6": { "tipo": "LECAP",  "vencimiento": "2026-11-30", "valVto": 1.29888 },
+  "T15E7": { "tipo": "BONCAP", "vencimiento": "2027-01-15", "valVto": 1.61104 },
+  "T30A7": { "tipo": "BONCAP", "vencimiento": "2027-04-30", "valVto": 1.57341 },
+  "T31Y7": { "tipo": "BONCAP", "vencimiento": "2027-05-31", "valVto": 1.51563 },
+  "T30J7": { "tipo": "BONCAP", "vencimiento": "2027-06-30", "valVto": 1.56037 }
+}
