@@ -1,0 +1,22 @@
+{
+  "CUAP":  { "tipo": "CUASI-PAR", "vencimiento": "2045-12-31", "tasa_cupon": 3.31, "periodicidad": "Semestral", "amortizacion": "Escalonada", "ley": "Argentina", "moneda": "ARS" },
+  "DICP":  { "tipo": "DISCOUNT",  "vencimiento": "2033-12-31", "tasa_cupon": 0.00, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS" },
+  "DIP0":  { "tipo": "DISCOUNT",  "vencimiento": "2033-12-31", "tasa_cupon": 0.00, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS" },
+  "PAP0":  { "tipo": "PAR",       "vencimiento": "2038-12-31", "tasa_cupon": 0.00, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS" },
+  "PARP":  { "tipo": "PAR",       "vencimiento": "2038-12-31", "tasa_cupon": 0.00, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS" },
+  "TX26":  { "tipo": "BONCER",    "vencimiento": "2026-11-09", "tasa_cupon": 2.00, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS" },
+  "TX28":  { "tipo": "BONCER",    "vencimiento": "2028-03-26", "tasa_cupon": 2.25, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS" },
+  "TX31":  { "tipo": "BONCER",    "vencimiento": "2031-11-30", "tasa_cupon": 2.50, "periodicidad": "Semestral", "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS" },
+  "TZX26": { "tipo": "BONCER",    "vencimiento": "2026-06-30", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZX27": { "tipo": "BONCER",    "vencimiento": "2027-06-30", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZX28": { "tipo": "BONCER",    "vencimiento": "2028-06-30", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXA7": { "tipo": "BONCER",    "vencimiento": "2027-04-30", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXD6": { "tipo": "BONCER",    "vencimiento": "2026-12-15", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXD7": { "tipo": "BONCER",    "vencimiento": "2027-12-15", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXM7": { "tipo": "BONCER",    "vencimiento": "2027-03-31", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXM9": { "tipo": "BONCER",    "vencimiento": "2029-03-28", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXO6": { "tipo": "BONCER",    "vencimiento": "2026-10-30", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXS7": { "tipo": "BONCER",    "vencimiento": "2027-09-30", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXS8": { "tipo": "BONCER",    "vencimiento": "2028-09-29", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true },
+  "TZXY7": { "tipo": "BONCER",    "vencimiento": "2027-05-31", "tasa_cupon": 0.00, "periodicidad": "—",         "amortizacion": "Bullet",     "ley": "Argentina", "moneda": "ARS", "cero_cupon": true }
+}
