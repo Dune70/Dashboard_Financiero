@@ -33,10 +33,15 @@ HORA_FIN        = (17,  0)   # 17:00 hs.
 INTERVALO_MIN   = 15         # minutos entre cada fetch
 
 TICKERS_VALIDOS = {
-    "S17A6","S30A6","S15Y6","S29Y6","S31L6","S31G6",
-    "S30S6","S30O6","S30N6",
+    # LECAPs — vienen del panel general /Cotizaciones/Letras/argentina/Todos
+    "S30A6","S15Y6","S29Y6","S17L6","S31L6","S14G6",
+    "S31G6","S30S6","S30O6","S30N6",
+    # BONCAPs — NO están en ningún panel, se consultan individualmente
     "T30J6","T15E7","T30A7","T31Y7","T30J7",
 }
+
+# BONCAPs: consulta individual obligatoria
+BONCAPS = ["T30J6","T15E7","T30A7","T31Y7","T30J7"]
 
 # ── Feriados nacionales Argentina ─────────────────────────────────────────────
 # Actualizar cada año. Incluye feriados inamovibles + movibles + puentes.
@@ -144,26 +149,54 @@ def headers():
 
 # ── Fetch cotizaciones ────────────────────────────────────────────────────────
 def fetch_panel(instrumento):
+    """1 request — trae todos los LECAPs del panel Letras."""
     url = f"{IOL_BASE}/api/v2/Cotizaciones/{instrumento}/argentina/Todos"
     r = requests.get(url, headers=headers(), timeout=20)
     r.raise_for_status()
-    return r.json()
+    return r.json().get("titulos", [])
+
+def fetch_cotizacion_individual(ticker):
+    """
+    1 request por ticker — único método que funciona para BONCAPs.
+    Confirmado: no aparecen en ningún panel general de IOL.
+    Ventaja: trae montoOperado real (ej: T30J6 → $24.326M).
+    """
+    url = f"{IOL_BASE}/api/v2/bCBA/Titulos/{ticker}/Cotizacion"
+    r = requests.get(url, headers=headers(), timeout=20)
+    r.raise_for_status()
+    d = r.json()
+    # Normalizar al mismo formato que panel general
+    return {
+        "simbolo":             ticker,
+        "ultimoPrecio":        d.get("ultimoPrecio", 0),
+        "variacion":           d.get("variacion", 0),
+        "montoOperado":        d.get("montoOperado", 0),
+        "cantidadOperaciones": d.get("cantidadOperaciones", 0),
+    }
 
 def extraer_cotizacion(item):
-    simbolo = (item.get("simbolo") or item.get("ticker") or "").strip().upper()
-    precio  = float(
-        item.get("ultimoPrecio") or
-        item.get("ultimo") or
-        item.get("precio") or 0
-    )
-    var_raw = float(item.get("variacion") or item.get("variacionPorcentual") or 0)
-    var_pct = var_raw / 100 if abs(var_raw) > 1 else var_raw
-    vol     = float(
-        item.get("montoOperado") or
-        item.get("volumen") or
-        item.get("cantidadOperaciones") or 0
-    )
-    return {"ticker": simbolo, "precio": precio, "var_pct": round(var_pct, 6), "vol": vol}
+    """
+    Mapea un item del panel general de IOL al formato interno.
+    Confirmado en sesión 18/04/2026:
+      - ultimoPrecio: precio cada 100 VN (ej: 126.815)
+      - variacion: % directo (ej: 0.16 = 0,16%)
+      - montoOperado: viene 0 en panel general (mercado cerrado o limitación API)
+      - cantidadOperaciones: único campo con dato útil de actividad
+    """
+    simbolo = (item.get("simbolo") or "").strip().upper()
+    precio  = float(item.get("ultimoPrecio") or 0)
+    # variacion viene como % directo: 0.25 = 0,25% → convertir a decimal
+    var_pct = float(item.get("variacion") or 0) / 100
+    # volumen: montoOperado viene 0 en panel, usamos cantidadOperaciones como proxy
+    vol     = float(item.get("montoOperado") or 0)
+    cant_op = int(item.get("cantidadOperaciones") or 0)
+    return {
+        "ticker":  simbolo,
+        "precio":  precio,
+        "var_pct": round(var_pct, 6),
+        "vol":     vol,
+        "cant_op": cant_op,
+    }
 
 # ── Datos estáticos ───────────────────────────────────────────────────────────
 def cargar_estaticos():
@@ -191,6 +224,10 @@ def calcular_tasas(precio, val_vto, vencimiento_str):
     }
 
 def construir_output(cotizaciones_raw, estaticos):
+    """
+    Precio IOL viene cada 100 VN (ej: 126.815).
+    valVto en lecaps_static.json debe estar en la misma escala (ej: 127.486).
+    """
     instrumentos = []
     for item in cotizaciones_raw:
         cot    = extraer_cotizacion(item)
@@ -208,9 +245,11 @@ def construir_output(cotizaciones_raw, estaticos):
             "ticker":      ticker,
             "tipo":        est.get("tipo", "LECAP"),
             "vencimiento": vencimiento,
+            "vto":         f"{vencimiento[8:10]}/{vencimiento[5:7]}/{vencimiento[:4]}",
             "precio":      round(cot["precio"], 4),
             "var_pct":     cot["var_pct"],
             "vol":         cot["vol"],
+            "cant_op":     cot["cant_op"],
             "valVto":      val_vto,
             **tasas
         })
@@ -240,24 +279,44 @@ def git_push():
 
 # ── Un ciclo de fetch ─────────────────────────────────────────────────────────
 def ejecutar_fetch():
+    """
+    Estrategia definitiva (confirmada 18/04/2026):
+      - LECAPs: 1 request via panel /Cotizaciones/Letras/argentina/Todos
+      - BONCAPs: 5 requests individuales /bCBA/Titulos/{ticker}/Cotizacion
+        (no aparecen en ningún panel general de IOL)
+    Total: 6 requests/ciclo → ~3.564 requests/mes
+    """
     log.info("── Fetch iniciado ──")
     try:
+        # 1 request — LECAPs
         raw_letras = fetch_panel("Letras")
-        log.info(f"Letras: {len(raw_letras)} items")
-        raw_bonos  = fetch_panel("Bonos")
-        log.info(f"Bonos:  {len(raw_bonos)} items")
+        log.info(f"Panel Letras: {len(raw_letras)} items")
 
+        # 5 requests — BONCAPs individuales
+        raw_boncaps = []
+        for ticker in BONCAPS:
+            try:
+                item = fetch_cotizacion_individual(ticker)
+                raw_boncaps.append(item)
+                log.info(f"  {ticker}: ${item['ultimoPrecio']} | "
+                         f"var {item['variacion']}% | "
+                         f"monto ${item['montoOperado']:,.0f}")
+            except Exception as e:
+                log.warning(f"  {ticker}: error ({e})")
+
+        log.info(f"BONCAPs individuales: {len(raw_boncaps)}/5")
+
+        # Merge, calcular, guardar
         estaticos = cargar_estaticos()
-        output    = construir_output(raw_letras + raw_bonos, estaticos)
+        output    = construir_output(raw_letras + raw_boncaps, estaticos)
         n         = len(output["instrumentos"])
         log.info(f"Instrumentos mapeados: {n}/{len(TICKERS_VALIDOS)}")
 
         if n == 0:
             log.error("Ningún instrumento mapeado — verificar campos IOL")
-            # Debug: muestra el primer item de cada panel
-            for panel_name, panel in [("Letras", raw_letras), ("Bonos", raw_bonos)]:
-                if panel:
-                    log.info(f"[DEBUG] Primer item {panel_name}: {json.dumps(panel[0], ensure_ascii=False)[:400]}")
+            if raw_letras:
+                log.info(f"[DEBUG] Primer item Letras: "
+                         f"{json.dumps(raw_letras[0], ensure_ascii=False)[:300]}")
             return False
 
         DATA_DIR.mkdir(parents=True, exist_ok=True)
