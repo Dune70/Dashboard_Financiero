@@ -1,0 +1,14 @@
+{
+  "VSCVO": { "emisor": "Vista Energy",        "vencimiento": "2033-10-06", "tasa_cupon": 8.500, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "IRCPO": { "emisor": "IRSA Inv. y Rep.",    "vencimiento": "2035-03-31", "tasa_cupon": 8.000, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "PN43O": { "emisor": "Pan American Energy", "vencimiento": "2037-01-15", "tasa_cupon": 7.750, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "PLC4O": { "emisor": "Pluspetrol",          "vencimiento": "2032-05-30", "tasa_cupon": 8.500, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "TSC4O": { "emisor": "Transp. Gas del Sur", "vencimiento": "2035-11-20", "tasa_cupon": 7.750, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "RC1CO": { "emisor": "Arcor",               "vencimiento": "2033-07-31", "tasa_cupon": 7.600, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "YM34O": { "emisor": "YPF",                 "vencimiento": "2034-01-17", "tasa_cupon": 8.250, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "VSCXO": { "emisor": "Vista Energy Argent", "vencimiento": "2038-08-04", "tasa_cupon": 7.875, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "PLC5O": { "emisor": "Pluspetrol",          "vencimiento": "2031-05-18", "tasa_cupon": 8.125, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "RUCDO": { "emisor": "MSU Energy",          "vencimiento": "2030-12-05", "tasa_cupon": 9.750, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" },
+  "RVS1O": { "emisor": "C.A. River Plate",    "vencimiento": "2026-12-31", "tasa_cupon": 0.000, "tipo_tasa": "Fija", "moneda": "ARS", "periodicidad": "Trimestral", "amortizacion": "Bullet", "ley": "Argentina"  },
+  "TLCPO": { "emisor": "Telecom Argentina",   "vencimiento": "2033-05-28", "tasa_cupon": 9.250, "tipo_tasa": "Fija", "moneda": "USD", "periodicidad": "Semestral",  "amortizacion": "Bullet", "ley": "Nueva York" }
+}
