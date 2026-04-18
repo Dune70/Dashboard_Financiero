@@ -223,7 +223,7 @@ tbody tr { border-bottom: 1px solid var(--border); }
 tbody tr:hover { background: var(--surface); }
 tbody td { padding: 8px 10px; text-align: right; color: var(--text); font-family: var(--mono); font-size: 12px; }
 tbody td:first-child { text-align: left; font-weight: 500; }
-tbody td:nth-child(2) { text-align: left; }
+tbody td:nth-child(2) { text-align: left; white-space: nowrap; }
 .pos { color: var(--green); }
 .neg { color: var(--danger); }
 .muted { color: var(--text2); }
@@ -541,7 +541,7 @@ tbody td:nth-child(2) { text-align: left; }
     <table id="bonosTable">
       <thead><tr>
         <th data-col="ticker" data-type="str" style="width:88px">ticker <i class="sa">↕</i></th>
-        <th data-col="vto" data-type="str" style="width:100px">fecha vto. <i class="sa">↕</i></th>
+        <th data-col="vto" data-type="str" style="width:120px;white-space:nowrap">fecha vto. <i class="sa">↕</i></th>
         <th data-col="dias" data-type="num" style="width:50px">días <i class="sa">↕</i></th>
         <th data-col="precio" data-type="num" style="width:66px">precio <i class="sa">↕</i></th>
         <th data-col="var_" data-type="num" style="width:58px">cambio <i class="sa">↕</i></th>
@@ -681,10 +681,10 @@ tbody td:nth-child(2) { text-align: left; }
     </div>
   </div>
 </main>
-<div class="footer">base 365 · LECAPs & BONCAPs · datos al 17/04/2026 · días calculados dinámicamente</div>
+<div class="footer">base 365 · LECAPs & BONCAPs · escala 100 VN · días calculados dinámicamente · datos al 18/04/2026</div>
 
 <script>
-const DATA_DATE="17/04/2026";
+const DATA_DATE="18/04/2026";
 
 /* ── Formateo unificado: coma=decimal, punto=millares ── */
 function parseNum(str) {
@@ -720,21 +720,24 @@ document.addEventListener('input', e => {
     }
   }
 });
+// Precios y valVto en escala 100 VN (como devuelve IOL)
+// var_ en decimal (0.0023 = 0,23%)
 const rawBonos=[
-  {ticker:'S17A6',tipo:'LECAP', vto:'17-04-2026',vtoSort:'2026-04-17', precio:1.0932, var_:0.0029,  clean:1.0034,ic:0.0806,paridad:1.0032,valVto:1.10130, vol:101441659926},
-  {ticker:'S30A6',tipo:'LECAP', vto:'30-04-2026',vtoSort:'2026-04-30', precio:1.2540, var_:0.0023,  clean:1.0235,ic:0.2215,paridad:1.0193,valVto:1.27486, vol:30653117909},
-  {ticker:'S15Y6',tipo:'LECAP', vto:'15-05-2026',vtoSort:'2026-05-15', precio:1.0194, var_:0.0019,  clean:1.0070,ic:0.0060,paridad:1.0070,valVto:1.05178, vol:70796690322},
-  {ticker:'S29Y6',tipo:'LECAP', vto:'29-05-2026',vtoSort:'2026-05-29', precio:1.2740, var_:0.0034,  clean:1.0063,ic:0.2547,paridad:1.0050,valVto:1.32044, vol:8529567029},
-  {ticker:'T30J6',tipo:'BONCAP',vto:'30-06-2026',vtoSort:'2026-06-30', precio:1.3650, var_:0.0022,  clean:0.9940,ic:0.3545,paridad:0.9955,valVto:1.44896, vol:16328948700},
-  {ticker:'S31L6',tipo:'LECAP', vto:'31-07-2026',vtoSort:'2026-07-31', precio:1.0853, var_:0.0034,  clean:1.0219,ic:0.0491,paridad:1.0209,valVto:1.17677, vol:3530892677},
-  {ticker:'S31G6',tipo:'LECAP', vto:'31-08-2026',vtoSort:'2026-08-31', precio:1.1460, var_:0.0021,  clean:1.0163,ic:0.1157,paridad:1.0146,valVto:1.27064, vol:706037336},
-  {ticker:'S30S6',tipo:'LECAP', vto:'30-09-2026',vtoSort:'2026-09-30', precio:1.0300, var_:0.0044,  clean:1.0132,ic:0.0058,paridad:1.0131,valVto:1.17536, vol:1333597071},
-  {ticker:'S30O6',tipo:'LECAP', vto:'30-10-2026',vtoSort:'2026-10-30', precio:1.1689, var_:0.0076,  clean:1.1487,ic:0.00,  paridad:1.1487,valVto:1.35278, vol:918943340},
-  {ticker:'S30N6',tipo:'LECAP', vto:'30-11-2026',vtoSort:'2026-11-30', precio:1.0967, var_:0.0047,  clean:1.0740,ic:0.00,  paridad:1.0740,valVto:1.29888, vol:603043729},
-  {ticker:'T15E7',tipo:'BONCAP',vto:'15-01-2027',vtoSort:'2027-01-15', precio:1.3105, var_:0.0057,  clean:0.9592,ic:0.3223,paridad:0.9692,valVto:1.61104, vol:17711144865},
-  {ticker:'T30A7',tipo:'BONCAP',vto:'30-04-2027',vtoSort:'2027-04-30', precio:1.1785, var_:0.0034,  clean:1.1625,ic:0.00,  paridad:1.1625,valVto:1.57341, vol:98375868312},
-  {ticker:'T31Y7',tipo:'BONCAP',vto:'31-05-2027',vtoSort:'2027-05-31', precio:1.1080, var_:0.0045,  clean:1.0920,ic:0.00,  paridad:1.0920,valVto:1.51563, vol:14391259025},
-  {ticker:'T30J7',tipo:'BONCAP',vto:'30-06-2027',vtoSort:'2027-06-30', precio:1.1270, var_:-0.0061, clean:1.0465,ic:0.0585,paridad:1.0439,valVto:1.56037, vol:383411284},
+  {ticker:'S30A6',tipo:'LECAP', vto:'30/04/2026',vtoSort:'2026-04-30', precio:126.815,var_:0.0016, paridad:1.0193,valVto:127.486,vol:30653117909},
+  {ticker:'S15Y6',tipo:'LECAP', vto:'15/05/2026',vtoSort:'2026-05-15', precio:103.680,var_:0.0025, paridad:1.0070,valVto:105.178,vol:70796690322},
+  {ticker:'S29Y6',tipo:'LECAP', vto:'29/05/2026',vtoSort:'2026-05-29', precio:129.350,var_:0.0044, paridad:1.0050,valVto:132.044,vol:8529567029},
+  {ticker:'T30J6',tipo:'BONCAP',vto:'30/06/2026',vtoSort:'2026-06-30', precio:139.050,var_:0.0022, paridad:0.9955,valVto:144.896,vol:16328948700},
+  {ticker:'S17L6',tipo:'LECAP', vto:'17/07/2026',vtoSort:'2026-07-17', precio:110.990,var_:0.0067, paridad:1.0209,valVto:117.677,vol:4900000000},
+  {ticker:'S31L6',tipo:'LECAP', vto:'31/07/2026',vtoSort:'2026-07-31', precio:110.990,var_:0.0067, paridad:1.0209,valVto:117.677,vol:3530892677},
+  {ticker:'S14G6',tipo:'LECAP', vto:'14/08/2026',vtoSort:'2026-08-14', precio:114.760,var_:0.0035, paridad:1.0146,valVto:127.064,vol:700000000},
+  {ticker:'S31G6',tipo:'LECAP', vto:'31/08/2026',vtoSort:'2026-08-31', precio:114.760,var_:0.0035, paridad:1.0146,valVto:127.064,vol:706037336},
+  {ticker:'S30S6',tipo:'LECAP', vto:'30/09/2026',vtoSort:'2026-09-30', precio:103.000,var_:0.0044, paridad:1.0131,valVto:117.536,vol:1333597071},
+  {ticker:'S30O6',tipo:'LECAP', vto:'30/10/2026',vtoSort:'2026-10-30', precio:116.890,var_:0.0076, paridad:1.1487,valVto:135.278,vol:918943340},
+  {ticker:'S30N6',tipo:'LECAP', vto:'30/11/2026',vtoSort:'2026-11-30', precio:109.670,var_:0.0047, paridad:1.0740,valVto:129.888,vol:603043729},
+  {ticker:'T15E7',tipo:'BONCAP',vto:'15/01/2027',vtoSort:'2027-01-15', precio:130.950,var_:0.0049, paridad:0.9692,valVto:161.104,vol:17711144865},
+  {ticker:'T30A7',tipo:'BONCAP',vto:'30/04/2027',vtoSort:'2027-04-30', precio:117.600,var_:0.0012, paridad:1.1625,valVto:157.341,vol:98375868312},
+  {ticker:'T31Y7',tipo:'BONCAP',vto:'31/05/2027',vtoSort:'2027-05-31', precio:110.300,var_:0.0000, paridad:1.0920,valVto:151.563,vol:14391259025},
+  {ticker:'T30J7',tipo:'BONCAP',vto:'30/06/2027',vtoSort:'2027-06-30', precio:112.700,var_:-0.0061,paridad:1.0439,valVto:156.037,vol:383411284},
 ];
 
 const pfData=[
@@ -762,10 +765,10 @@ document.getElementById('updateDate').textContent=DATA_DATE;
 
 function getDias(vtoSort){
   const hoy=new Date();hoy.setHours(0,0,0,0);
-  return Math.max(1,Math.floor((new Date(vtoSort)-hoy)/86400000));
+  return Math.floor((new Date(vtoSort)-hoy)/86400000);
 }
 function enrich(com){
-  return rawBonos.map(b=>{
+  return rawBonos.filter(b=>getDias(b.vtoSort)>0).map(b=>{
     const dias=getDias(b.vtoSort);
     const pc=b.precio*(1+com),gan=(b.valVto/pc)-1;
     const ratio=b.valVto/b.precio;
