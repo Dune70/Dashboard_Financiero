@@ -1,3 +1,5 @@
+Estructura:
+
 herramientas-ar/              ← raíz del repo
 ├── scheduler_iol.py          ← acá va el script
 ├── .env                      ← acá van tus credenciales (no se sube)
@@ -10,3 +12,12 @@ herramientas-ar/              ← raíz del repo
 ├── bonos_renta_fija.html
 ├── calculadora_cauciones.html
 └── calculadora_intereses_compuesto.html
+
+Resumen de lo que tenés armado:
+
+Componente	Estado
+Dashboard online✅ dune70.github.io/Dashboard_Financiero/Dashboard_IOL.html
+Repo GitHub✅ github.com/Dune70/Dashboard_Financiero
+Script fetch IOL✅ scheduler_iol.py
+Datos estáticos✅ data/lecaps_static.json
+Task Scheduler Windows✅ Lunes a viernes 10:30
